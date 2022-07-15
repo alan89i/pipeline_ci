@@ -19,9 +19,9 @@ jobs:
         id: mix-cache-format
         with:
           path: deps
-          key: ${{runner.os}}-${{matrix.otp}}-${{matrix.elixir}}-mix-${{hashFiles(format('{0}{1}', githu.workspace, 'mix.lock'))}}
+          key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, 'mix.lock'))}}
       - name: Install Mix Dependencies
         if: steps.mix-chache-format.outputs.cache-hit <> 'true'
         run: mix deps.get
-      - name: check_format
+      - name: ===> format
         run: mix format --check-formatted
