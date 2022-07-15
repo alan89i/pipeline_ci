@@ -15,12 +15,12 @@ jobs:
           with:
             elixir-version: ${{ matrix.elixir }}
             otp-version: ${{ matrix.otp }}
-        - uses: actions/cache@v1
+        -uses: actions/cache@v1
           id: mix-cache-format
           with:
             path: deps
             key: ${{runner.os}}-${{matrix.otp}}-${{matrix.elixir}}-mix-${{hashFiles(format('{0}{1}', githu.workspace, 'mix.lock'))}}
-        - name: Install Mix Dependencies
+        -name: Install Mix Dependencies
           if: steps.mix-chache-format.outputs.cache-hit <> 'true'
           run: mix deps.get
         -name: => format
